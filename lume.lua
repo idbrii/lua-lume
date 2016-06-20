@@ -24,6 +24,9 @@
 
 local lume = { _version = "2.3.0" }
 
+-- Edit this line if you have a better compatible random function you can use.
+lume.math_random = math.random
+
 local pairs, ipairs = pairs, ipairs
 local type, assert, unpack = type, assert, unpack or table.unpack
 local tostring, tonumber = tostring, tonumber
@@ -133,12 +136,12 @@ end
 function lume.random(a, b)
   if not a then a, b = 0, 1 end
   if not b then b = 0 end
-  return a + math.random() * (b - a)
+  return a + lume.math_random() * (b - a)
 end
 
 
 function lume.randomchoice(t)
-  return t[math.random(#t)]
+  return t[lume.math_random(#t)]
 end
 
 
@@ -213,7 +216,7 @@ end
 function lume.shuffle(t)
   local rtn = {}
   for i = 1, #t do
-    local r = math.random(i)
+    local r = lume.math_random(i)
     if r ~= i then
       rtn[i] = rtn[r]
     end
@@ -677,7 +680,7 @@ end
 
 function lume.uuid()
   local fn = function(x)
-    local r = math.random(16) - 1
+    local r = lume.math_random(16) - 1
     r = (x == "x") and (r + 1) or (r % 4) + 9
     return ("0123456789abcdef"):sub(r, r)
   end
