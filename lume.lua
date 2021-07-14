@@ -130,6 +130,19 @@ function lume.round(x, increment)
 end
 
 
+--- Compares whether two values are within a range. Useful for fuzzy comparisons:
+-- whether values are approximately equal.
+-- ```lua
+-- lume.approximately(2.34567, 2.3, 0.001) -- Returns false
+-- lume.approximately(2.34567, 2.3, 0.1) -- Returns true
+-- lume.approximately(0, .1, 0.001) -- Returns false
+-- ```
+function lume.approximately(a, b, epsilon)
+  local delta = math.abs(a) - math.abs(b)
+  return math.abs(delta) < epsilon
+end
+
+
 --- Returns `1` if `x` is 0 or above, returns `-1` when `x` is negative.
 function lume.sign(x)
   return x < 0 and -1 or 1
