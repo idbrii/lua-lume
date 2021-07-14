@@ -325,6 +325,17 @@ function lume.shuffle(t)
 end
 
 
+--- Returns a reversed copy of the array `t`.
+function lume.reverse(t)
+  local rtn = {}
+  local len = #t
+  for i = 1, len do
+    rtn[i] = t[len - i + 1]
+  end
+  return rtn
+end
+
+
 --- Returns a copy of the array `t` with all its items sorted. If `comp` is a
 -- function it will be used to compare the items when sorting. If `comp` is a
 -- string it will be used as the key to sort the items by.

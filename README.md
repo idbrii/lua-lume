@@ -138,6 +138,9 @@ lume.extend(t, { b = 4, c = 6 }) -- `t` becomes { a = 1, b = 4, c = 6 }
 #### lume.shuffle(t)
 Returns a shuffled copy of the array `t`.
 
+#### lume.reverse(t)
+Returns a reversed copy of the array `t`.
+
 #### lume.sort(t [, comp])
 Returns a copy of the array `t` with all its items sorted. If `comp` is a
 function it will be used to compare the items when sorting. If `comp` is a
