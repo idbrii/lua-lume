@@ -173,6 +173,20 @@ with the resulting values.
 lume.map({1, 2, 3}, function(x) return x * 2 end) -- Returns {2, 4, 6}
 ```
 
+#### lume.enumerate(t, fn)
+Applies the function `fn` to each index and value in table `t` and returns a
+new table with the resulting values.
+```lua
+lume.enumerate({4, 5, 6}, function(k, v) return {k, v} end) -- Returns {{1, 4}, {2, 5}, {3, 6}}
+```
+
+#### lume.zip(t1, t2, fn)
+Applies the function `fn` to each value in table `t` and returns a new table
+with the resulting values.
+```lua
+lume.zip({1, 2, 3}, {4, 5, 6}, function(a,b) return a + b end) -- Returns {5, 7, 9}
+```
+
 #### lume.all(t [, fn])
 Returns true if all the values in `t` table are true. If a `fn` function is
 supplied it is called on each value, true is returned if all of the calls to

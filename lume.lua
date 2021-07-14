@@ -402,6 +402,38 @@ function lume.map(t, fn)
 end
 
 
+--- Applies the function `fn` to each index and value in table `t` and returns a new table
+-- with the resulting values.
+-- ```lua
+-- lume.enumerate({4, 5, 6}, function(k, v) return {k, v} end) -- Returns {{1, 4}, {2, 5}, {3, 6}}
+-- ```
+function lume.enumerate(t, fn)
+  fn = iteratee(fn)
+  local iter = getiter(t)
+  local rtn = {}
+  for k, v in iter(t) do rtn[k] = fn(k, v) end
+  return rtn
+end
+
+
+--- Applies the function `fn` to each value in table `t` and returns a new table
+-- with the resulting values.
+-- ```lua
+-- lume.zip({1, 2, 3}, {4, 5, 6}, function(a,b) return a + b end) -- Returns {5, 7, 9}
+-- ```
+function lume.zip(t1, t2, fn)
+  assert(iscallable(fn), "expected a function as the first argument")
+  assert(t1 and t2, "expected at two table arguments")
+  fn = iteratee(fn)
+  local rtn = {}
+  local n = #t1
+  for i=1,n do
+    table.insert(rtn, fn(t1[i], t2[i]))
+  end
+  return rtn
+end
+
+
 --- Returns true if all the values in `t` table are true. If a `fn` function is
 -- supplied it is called on each value, true is returned if all of the calls to
 -- `fn` return true.
