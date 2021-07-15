@@ -290,6 +290,55 @@ function lume.remove(t, x)
 end
 
 
+--- Stable remove from list-like table.
+-- Fast for removing many elements. Doesn't change order of elements.
+-- https://stackoverflow.com/a/53038524/79125
+-- ```lua
+-- local t = { 1, 2, 3 }
+-- lume.removeall(t, function(x, i, j) x == 1 end) -- `t` becomes {2, 3}
+-- ```
+function lume.removeall(t, should_remove_fn)
+  local n = #t
+  local j = 1
+
+  for i=1,n do
+    if should_remove_fn(t[i], i, j) then
+      t[i] = nil
+    else
+      -- Move i's kept value to j's position, if it's not already there.
+      if i ~= j then
+        t[j] = t[i]
+        t[i] = nil
+      end
+      j = j + 1 -- Increment position of where we'll place the next kept value.
+    end
+  end
+
+  return t
+end
+
+--- Unstable remove from list-like table.
+-- Fast for removing a few elements, but modifies order.
+-- https://stackoverflow.com/a/28942022/79125
+-- ```lua
+-- local t = { 1, 2, 3 }
+-- lume.removeswap(t, function(x) x == 1 end) -- `t` becomes {3, 2}
+-- ```
+function lume.removeswap(t, should_remove_fn)
+  local n = #t
+  local i = 1
+  while i <= n do
+    local value = t[i]
+    if should_remove_fn(value) then
+      t[i] = t[n]
+      t[n] = nil
+      n = n - 1
+    else
+      i = i + 1
+    end
+  end
+end
+
 --- Nils all the values in the table `t`, this renders the table empty. Returns
 -- `t`.
 -- ```lua
