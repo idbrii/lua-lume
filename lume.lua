@@ -200,9 +200,11 @@ function lume.vector(angle, magnitude)
 end
 
 
---- Returns a random number between `a` and `b`. If only `a` is supplied a number
--- between `0` and `a` is returned. If no arguments are supplied a random number
--- between `0` and `1` is returned.
+--- Returns a random floating point number between `a` and `b`.
+--
+-- With both args, returns a number in `[a,b)`.
+-- If only `a` is supplied, returns a number in `[0,a)`.
+-- If no arguments are supplied, returns a number in `[0,1)`.
 function lume.random(a, b)
   if not a then a, b = 0, 1 end
   if not b then b = 0 end
