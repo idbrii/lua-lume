@@ -207,7 +207,7 @@ end
 -- If no arguments are supplied, returns a number in `[0,1)`.
 function lume.random(a, b)
   if not a then a, b = 0, 1 end
-  if not b then b = 0 end
+  if not b then a, b = 0, a end
   return a + lume.math_random() * (b - a)
 end
 
