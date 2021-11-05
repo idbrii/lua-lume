@@ -134,7 +134,7 @@ Fast for removing many elements. Doesn't change order of elements.
 [See reference](https://stackoverflow.com/questions/12394841/safely-remove-items-from-an-array-table-while-iterating/53038524#53038524).
 ```lua
 local t = { 1, 2, 3 }
-lume.removeall(t, function(x, i, j) x == 1 end) -- `t` becomes {2, 3}
+lume.removeall(t, function(x, i, j) return x == 1 end) -- `t` becomes {2, 3}
 ```
 
 #### lume.removeswap(t, should_remove_fn)
@@ -143,7 +143,7 @@ Fast for removing a few elements, but modifies order.
 [See reference](https://stackoverflow.com/questions/12394841/safely-remove-items-from-an-array-table-while-iterating/28942022#28942022).
 ```lua
 local t = { 1, 2, 3 }
-lume.removeswap(t, function(x) x == 1 end) -- `t` becomes {3, 2}
+lume.removeswap(t, function(x) return x == 1 end) -- `t` becomes {3, 2}
 ```
 
 #### lume.clear(t)

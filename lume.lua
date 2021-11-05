@@ -297,7 +297,7 @@ end
 -- https://stackoverflow.com/a/53038524/79125
 -- ```lua
 -- local t = { 1, 2, 3 }
--- lume.removeall(t, function(x, i, j) x == 1 end) -- `t` becomes {2, 3}
+-- lume.removeall(t, function(x, i, j) return x == 1 end) -- `t` becomes {2, 3}
 -- ```
 function lume.removeall(t, should_remove_fn)
   local n = #t
@@ -324,7 +324,7 @@ end
 -- https://stackoverflow.com/a/28942022/79125
 -- ```lua
 -- local t = { 1, 2, 3 }
--- lume.removeswap(t, function(x) x == 1 end) -- `t` becomes {3, 2}
+-- lume.removeswap(t, function(x) return x == 1 end) -- `t` becomes {3, 2}
 -- ```
 function lume.removeswap(t, should_remove_fn)
   local n = #t
