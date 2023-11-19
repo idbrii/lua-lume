@@ -138,8 +138,8 @@ end
 -- lume.approximately(0, .1, 0.001) -- Returns false
 -- ```
 function lume.approximately(a, b, epsilon)
-  local delta = math.abs(a) - math.abs(b)
-  return math.abs(delta) < epsilon
+  local delta = math.abs(a - b)
+  return delta < epsilon
 end
 
 

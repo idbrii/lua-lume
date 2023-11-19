@@ -29,6 +29,15 @@ tests["lume.round"] = function()
   testeq( lume.round(0),            0       )
 end
 
+-- lume.approximately
+tests["lume.approximately"] = function()
+  testeq(false, lume.approximately(2.34567, 2.3, 0.001))
+  testeq(true,  lume.approximately(2.34567, 2.3, 0.1))
+  testeq(false, lume.approximately(0, .1, 0.001))
+  testeq(false, lume.approximately(-.1, .1, 0.1))
+  testeq(false, lume.approximately(-1, 1, 0.1))
+end
+
 -- lume.sign
 tests["lume.sign"] = function()
   testeq( lume.sign(-10),  -1 )
